@@ -3,13 +3,15 @@ import { UsuariosService } from '../../../services/usuarios.service';
 
 @Component({
   selector: 'app-login-usuario',
-  imports: [],
+  standalone: false,
   templateUrl: './login-usuario.component.html',
   styleUrl: './login-usuario.component.css'
 })
 export class LoginUsuarioComponent {
 
-  constructor(private service: UsuariosService) { //injeção de dependencia
-
+  //construtor para injeção de dependência
+  constructor(
+    private service: UsuariosService
+  ) {    
   }
 }

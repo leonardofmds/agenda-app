@@ -1,4 +1,4 @@
 export const environment = {
-    apiUsuarios:'',
-    apiTarefas:''
+    apiUsuarios: '',
+    apiTarefas: ''
 };
