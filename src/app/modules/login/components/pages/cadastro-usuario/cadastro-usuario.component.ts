@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { UsuariosService } from '../../../services/usuarios.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CadastroUsuariosRequest } from '../../../models/cadastro-usuarios.request';
-import { ConfirmarSenhaValidator } from '../../../validators/confirmar-senha.validator';
+import { ConfirmarSenhaValidator } from '../../../Validators/confirmar-senha.validator';
 
 @Component({
   selector: 'app-cadastro-usuario',
@@ -14,6 +14,7 @@ export class CadastroUsuarioComponent {
 
   //atributos
   form: FormGroup;
+  mensagem: string = '';
 
   //método construtor para injeção de dependência
   constructor(
@@ -57,6 +58,8 @@ export class CadastroUsuarioComponent {
       .subscribe({
         next: (data) => { //capturando a resposta de sucesso da API
           console.log(data);
+          this.mensagem = `${data.nome}, seu cadastro foi realizado com sucesso!`;
+          this.form.reset();
         }
       })
   }
