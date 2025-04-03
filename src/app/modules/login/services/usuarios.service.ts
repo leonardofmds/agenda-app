@@ -8,12 +8,10 @@ import { AutenticarUsuariosRequest } from "../models/autenticar-usuarios.request
 import { AutenticarUsuariosResponse } from "../models/autenticar-usuarios.response";
 import { AuthService } from "../../../services/auth.service";
 
-
 @Injectable({
     providedIn: 'root'
 })
 export class UsuariosService {
-
 
     //método construtor para injeção de dependência
     constructor(
@@ -21,7 +19,6 @@ export class UsuariosService {
         private auth: AuthService
     ) {
     }
-
 
     /*
        Método para realizar uma requisição de cadastro
@@ -32,7 +29,6 @@ export class UsuariosService {
         return this.http.post<CadastroUsuariosResponse>
             (`${environment.apiUsuarios}/criar` , request);
     }
-
 
     /*
        Método para realizar uma requisição de autenticação
@@ -50,12 +46,8 @@ export class UsuariosService {
                         this.auth.create(response); //salvando a autenticação
                     }
 
-
                     return response;
                 })
             );
     }
 }
-
-
-

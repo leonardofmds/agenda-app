@@ -12,10 +12,6 @@ export const routes: Routes = [
     {
         path: 'login-usuario',
         component: LoginUsuarioComponent
-    },
-    {
-        path: '**', //rota para página não encontrada (404)
-        component: NotFoundComponent
     }
 ];
 
