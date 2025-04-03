@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { UsuariosService } from '../../../services/usuarios.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CadastroUsuariosRequest } from '../../../models/cadastro-usuarios.request';
-import { ConfirmarSenhaValidator } from '../../../validators/confirmar-senha.validator';
+import { ConfirmarSenhaValidator } from '../../../Validators/confirmar-senha.validator';
+
 
 @Component({
   selector: 'app-cadastro-usuario',
@@ -14,6 +15,9 @@ export class CadastroUsuarioComponent {
 
   //atributos
   form: FormGroup;
+
+  mensagemSucesso : string = ''; //mensagem de sucesso
+  mensagemErro : string = ''; //mensagem de erro
 
   //método construtor para injeção de dependência
   constructor(
@@ -43,6 +47,10 @@ export class CadastroUsuarioComponent {
 
   //método para capturar o evento de submit do formulário
   onSubmit() {
+
+    //limpar os valores das mensagens
+    this.mensagemSucesso = '';
+    this.mensagemErro = '';
     
     //criando um objeto para enviar os dados da requisição
     //preenchendo este objeto com os valores dos campos do formulário
@@ -56,7 +64,10 @@ export class CadastroUsuarioComponent {
     this.service.cadastrar(request)
       .subscribe({
         next: (data) => { //capturando a resposta de sucesso da API
-          console.log(data);
+          this.mensagemSucesso = `${data.nome}, sua conta foi criada com sucesso!`
+        },
+        error: (error) => { //capturando a resposta de erro da API
+          this.mensagemErro = error.error.message; //exibindo a mensagem de erro retornada pela API
         }
       })
   }

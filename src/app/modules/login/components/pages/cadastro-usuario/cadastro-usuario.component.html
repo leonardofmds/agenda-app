@@ -4,9 +4,13 @@
     <div class="card shadow p-4" style="width: 350px;">
         <h4 class="text-center mb-3">Cadastro de Usuário</h4>
 
+        <app-alert-message [message]="mensagemSucesso" [type]="'success'"></app-alert-message>
+        <app-alert-message [message]="mensagemErro" [type]="'error'"></app-alert-message>
+
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
             <div class="mb-3">
+
                 <label for="nome" class="form-label">Nome do usuário:</label>
                 <input type="text" formControlName="nome" class="form-control" id="nome" placeholder="Digite seu nome">
             

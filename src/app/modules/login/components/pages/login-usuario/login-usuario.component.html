@@ -8,9 +8,7 @@
         <h4 class="text-center mb-3">Autenticação de Usuário</h4> 
         <p class="text-center">Entre com suas credendiais para acessar a agenda de tarefas</p>
         
-        <div class="text-danger">
-            <strong>{{ msg }}</strong>
-        </div>
+        <app-alert-message [message]="mensagemErro" [type]="'error'"></app-alert-message>
 
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
 

@@ -14,7 +14,7 @@ export class LoginUsuarioComponent {
 
   //atributos
   form: FormGroup;
-  msg: string = '';  
+  mensagemErro: string = '';  
 
   //construtor para injeção de dependência
   constructor(
@@ -30,6 +30,9 @@ export class LoginUsuarioComponent {
 
   //função para capturar o submit do formulário
   onSubmit() {
+
+    //limpar os valores das mensagens
+    this.mensagemErro = '';
 
     //criando um objeto request
     const request: AutenticarUsuariosRequest = {
@@ -48,7 +51,7 @@ export class LoginUsuarioComponent {
             });
         },
         error: (e) => { //retorno de sucesso
-          this.msg = e.error.message;
+          this.mensagemErro = e.error.message;
         }
       })
   }
