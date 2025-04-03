@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { NotFoundComponent } from './modules/login/components/errors/not-found/not-found.component';
+import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
     {
@@ -8,7 +9,8 @@ export const routes: Routes = [
     },
     {
         path: 'admin', //domínio -> rota do módulo
-        loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule)
+        loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule),
+        canActivate: [AuthGuard] //protege a rota com o AuthGuard
     },
     {
         path: '',
