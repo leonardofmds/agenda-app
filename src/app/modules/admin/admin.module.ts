@@ -8,6 +8,7 @@ import { RouterLink } from "@angular/router";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AdminRoutingModule } from "./admin-routing.module";
 import { NavbarComponent } from "./components/shared/navbar/navbar.component";
+import { ChartModule } from "angular-highcharts";
 
 @NgModule({
     /* Configurando os componentes do módulo */
@@ -24,7 +25,8 @@ import { NavbarComponent } from "./components/shared/navbar/navbar.component";
         RouterLink,
         FormsModule,
         ReactiveFormsModule,
-        AdminRoutingModule
+        AdminRoutingModule,
+        ChartModule
     ]
 })
 export class AdminModule { }
