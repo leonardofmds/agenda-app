@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AdminRoutingModule } from "./admin-routing.module";
 import { NavbarComponent } from "./components/shared/navbar/navbar.component";
 import { ChartModule } from "angular-highcharts";
+import { AlertMessageComponent } from "../../components/shared/alert-message/alert-message.component";
 
 @NgModule({
     /* Configurando os componentes do módulo */
@@ -26,7 +27,8 @@ import { ChartModule } from "angular-highcharts";
         FormsModule,
         ReactiveFormsModule,
         AdminRoutingModule,
-        ChartModule
+        ChartModule,
+        AlertMessageComponent
     ]
 })
 export class AdminModule { }
