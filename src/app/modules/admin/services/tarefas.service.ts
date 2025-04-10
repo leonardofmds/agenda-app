@@ -4,6 +4,7 @@ import { TarefasRequest } from "../models/tarefas.request";
 import { Observable } from "rxjs";
 import { TarefasResponse } from "../models/tarefas.response";
 import { environment } from "../../../../environments/environment";
+import { DashboardResponse } from "../models/dashboard.response";
 
 
 @Injectable({
@@ -49,6 +50,13 @@ export class TarefasService {
         return this.http.get<TarefasResponse>
             (`${environment.apiTarefas}/${id}`);
     }
+
+    //método para consultar os dados do dashboard
+    consultarDashboard(): Observable<DashboardResponse[]> {
+        return this.http.get<DashboardResponse[]>
+            (`${environment.apiTarefas}/dashboard`);
+    }
+
 }
 
 

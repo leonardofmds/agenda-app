@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Chart } from 'angular-highcharts';
+import { DashboardResponse } from '../../../models/dashboard.response';
+import { TarefasService } from '../../../services/tarefas.service';
 
 
 @Component({
@@ -13,51 +15,56 @@ export class DashboardComponent {
 
   //Propriedades do componente
   grafico: Chart = new Chart();
-  dados: any[] = [];
+  dados: DashboardResponse[] = [];
+
+
+  constructor(
+    private service: TarefasService
+  ) { }
 
 
   //Função executada quando o componente é inicializado
   ngOnInit() {
 
 
-    //Mock de dados
-    this.dados = [
-      { prioridade : 'Alta', quantidade : 10 },
-      { prioridade : 'Média', quantidade : 5 },
-      { prioridade : 'Baixa', quantidade : 2 },
-    ];
+    this.service.consultarDashboard()
+      .subscribe((response) => {
 
 
-    //Montando os dados do gráfico
-    const conteudo: any[] = [];
-    this.dados.forEach((item) => {
-      conteudo.push([item.prioridade, item.quantidade]);
-    });
+        this.dados = response;
 
 
-    //Configurando o gráfico
-    this.grafico = new Chart({
-      chart: { type: 'pie' },
-      title: { text: 'Quantidade de tarefas por prioridade' },
-      subtitle: { text: 'Total de tarefas separadas por tipo / prioridade' },
-      plotOptions: {
-        pie: {
-          innerSize: '50%',
-          dataLabels: { enabled: true }
-        }
-      },
-      series: [{
-        data: conteudo,
-        type: 'pie',
-        name: 'Quantidade de tarefas',
-      }],
-      legend: { enabled: false },
-      credits: { enabled: false },
-    });
+        //Montando os dados do gráfico
+        const conteudo: any[] = [];
+        this.dados.forEach((item) => {
+          conteudo.push([item.prioridade, item.quantidade]);
+        });
 
 
+        //Configurando o gráfico
+        this.grafico = new Chart({
+          chart: { type: 'pie' },
+          title: { text: 'Quantidade de tarefas por prioridade' },
+          subtitle: { text: 'Total de tarefas separadas por tipo / prioridade' },
+          plotOptions: {
+            pie: {
+              innerSize: '50%',
+              dataLabels: { enabled: true }
+            }
+          },
+          series: [{
+            data: conteudo,
+            type: 'pie',
+            name: 'Quantidade de tarefas',
+          }],
+          legend: { enabled: false },
+          credits: { enabled: false },
+        });
+      });
   }
 }
+
+
 
 
 
